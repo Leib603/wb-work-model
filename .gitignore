@@ -1,0 +1,6 @@
+# 生成物与临时文件不入库
+work-model-package.zip
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

@@ -19,7 +19,15 @@ work-model/
 │   ├── 03-CLAUDE.md              Claude Code 引用文件
 │   ├── 04-手机速用版.md          手机精简版
 │   └── 05-恢复到WorkBuddy.md     换设备时装回的说明
-├── build.py                 ← 打包脚本
+├── backups/                 ← 自包含快照，出问题时提出来用（详见 BACKUP.md）
+│   ├── snapshots/           带时间戳的快照（保留最近 5 份）
+│   ├── LATEST.zip           永远指向最新快照
+│   └── manifest.json        快照清单 + SHA256 校验
+├── build.py                 ← 打包脚本：真相源 → 各平台适配
+├── backup.py                ← 备份脚本：生成自包含快照
+├── restore.py               ← 恢复脚本：校验并提取快照
+├── BACKUP.md                ← 备份与恢复说明
+├── SYNC.md                  ← 跨设备 Git 同步说明
 └── work-model-package.zip   ← 运行脚本后生成的可分发压缩包
 ```
 
@@ -39,7 +47,11 @@ work-model/
 
 ## 跨设备同步
 
-目前真相源在本地。将来想手机电脑自动同步时，把整个 `work-model/` 文件夹放进一个**私有 Git 仓库**或**云盘同步目录**即可——目录结构已为此设计好，无需改动。
+真相源已托管到私有 Git 仓库 `https://github.com/Leib603/wb-work-model`，详见 `SYNC.md`。
+
+## 备份与恢复
+
+重要节点先跑 `python backup.py`（生成自包含快照），出问题用 `python restore.py` 提出来即可用。详见 `BACKUP.md`。备份与 Git 同步互补：Git 管历史，备份管"随时能提出一份直接用的"。
 
 ## 维护原则
 

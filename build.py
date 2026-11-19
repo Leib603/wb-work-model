@@ -259,14 +259,22 @@ USER.md      → ~/.workbuddy/<用户ID>-personal/USER.md
 write_out("05-恢复到WorkBuddy.md", restore_md)
 
 # ---------------------------------------------------------------------------
-# 打包 zip（包含真相源、所有适配、README）
+# 打包 zip（包含真相源、所有适配、脚本、文档；排除 .git 与 backups）
 # ---------------------------------------------------------------------------
 
 print("打包 zip ...")
+EXCLUDE_DIRS = {".git", "backups", "restored", "__pycache__", ".workbuddy"}
+EXCLUDE_FILES = {ZIP_NAME.name}
 with zipfile.ZipFile(ZIP_NAME, "w", zipfile.ZIP_DEFLATED) as z:
     for p in sorted(ROOT.rglob("*")):
-        if p.is_file() and p != ZIP_NAME and "__pycache__" not in p.parts:
-            z.write(p, p.relative_to(ROOT))
+        if not p.is_file():
+            continue
+        parts = p.relative_to(ROOT).parts
+        if any(d in EXCLUDE_DIRS for d in parts):
+            continue
+        if p.name in EXCLUDE_FILES:
+            continue
+        z.write(p, p.relative_to(ROOT))
 
 print(f"\n完成：{ZIP_NAME.name}")
 print(f"真相源文件 {len(list(SRC.rglob('*.md')))} 个，适配文件 5 个。")

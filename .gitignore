@@ -2,5 +2,11 @@
 work-model-package.zip
 __pycache__/
 *.pyc
+restored/
 .DS_Store
 Thumbs.db
+
+# 备份快照：LATEST 与历史快照不入库（Git 本身就是历史），仅保留说明
+backups/snapshots/
+backups/LATEST.zip
+backups/manifest.json

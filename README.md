@@ -27,6 +27,7 @@ work-model/
 ├── backup.py                ← 备份脚本：生成自包含快照
 ├── restore.py               ← 恢复脚本：校验并提取快照
 ├── BACKUP.md                ← 备份与恢复说明
+├── MIGRATION.md             ← 迁移/拷贝/导入操作手册（换设备照着做）
 ├── SYNC.md                  ← 跨设备 Git 同步说明
 └── work-model-package.zip   ← 运行脚本后生成的可分发压缩包
 ```
@@ -52,6 +53,10 @@ work-model/
 ## 备份与恢复
 
 重要节点先跑 `python backup.py`（生成自包含快照），出问题用 `python restore.py` 提出来即可用。详见 `BACKUP.md`。备份与 Git 同步互补：Git 管历史，备份管"随时能提出一份直接用的"。
+
+## 迁移与导入
+
+换设备、换平台、导入到手机或新电脑——照着 `MIGRATION.md` 操作手册做，含完整场景和验证清单。
 
 ## 维护原则
 

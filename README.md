@@ -12,7 +12,8 @@ work-model/
 │   ├── memory/             记忆层：长期记忆 + 决策记录
 │   │   └── decisions/
 │   ├── skills/             技能层：可复用工作流
-│   └── knowledge/          知识层：资料索引
+│   ├── knowledge/          知识层：资料索引
+│   └── staff/              员工层：5 个 AI 员工岗位卡 + TEAM.md 调度规范
 ├── adapters/                ← 自动生成，勿手动改
 │   ├── 01-对话类AI-主提示词.md   ChatGPT / Claude / Gemini 粘贴用
 │   ├── 02-AGENTS.md              编码类工具通用标准

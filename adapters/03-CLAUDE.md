@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 > Claude Code 不会自动读取 AGENTS.md，因此用本文件显式引入。
-> 生成于 2026-11-19。
+> 生成于 2026-11-20。
 
 @import AGENTS.md
 

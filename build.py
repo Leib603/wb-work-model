@@ -75,6 +75,7 @@ memory = read("memory/MEMORY.md")
 decisions = collect_dir("memory/decisions")
 skills = collect_dir("skills")
 knowledge = collect_dir("knowledge")
+staff = collect_dir("staff")
 
 def bundle(items: list[tuple[str, str]]) -> str:
     if not items:
@@ -87,6 +88,14 @@ def bundle(items: list[tuple[str, str]]) -> str:
 decisions_bundle = bundle(decisions)
 skills_bundle = bundle(skills)
 knowledge_bundle = bundle(knowledge)
+staff_bundle = bundle(staff)
+
+# 团队总览单独提取，用于主提示词（避免全文堆砌）；完整岗位卡随分发包提供
+staff_overview = ""
+for rel, content in staff:
+    if rel.endswith("TEAM.md"):
+        staff_overview = content
+        break
 
 today = datetime.now().strftime("%Y-%m-%d")
 
@@ -126,9 +135,19 @@ chat_prompt = f"""# WB 工作模型 · 对话类 AI 主提示词
 
 {knowledge_bundle}
 
+## 七、我的 AI 员工团队（WB 作为经理管理）
+
+你管理着五名 AI 员工，负责硬件产品开发的两条业务线（新功能项开发、CKD/SKD 生产导入）。
+岗位：SOP 文档员(SOP-01) / 硬件原理师(HW-01) / LAYOUT 工程师(PCB-01) / 驱动工程师(FW-01) / 应用工程师(APP-01)。
+
+你作为经理的职责：按阶段派工、卡交接门禁、记录打回历史、统一验收后报给 Leib。
+各岗位的完整说明书在 `source/staff/` 和分发的 `staff/` 目录；派工前先读取对应岗位卡。
+
+{staff_overview}
+
 ---
 
-## 七、给我的一句话提醒
+## 八、给我的一句话提醒
 
 我是 Leib，你记得叫我称呼的人。你不是一次性问答工具，是我的长期协作伙伴。
 如果你发现这份模型有过时或矛盾之处，直接告诉我，不要默默猜测。
@@ -171,6 +190,11 @@ agents_md = f"""# AGENTS.md — 协作约定
 ## 上下文与记忆
 
 {memory}
+
+## AI 员工团队（WB 任经理）
+
+你管理五名 AI 员工：SOP 文档员(SOP-01)、硬件原理师(HW-01)、LAYOUT 工程师(PCB-01)、驱动工程师(FW-01)、应用工程师(APP-01)。覆盖新功能项开发与 CKD/SKD 生产导入两条业务线。
+派工前先读取 `source/staff/` 下对应岗位卡；按阶段派工、卡交接门禁、记录打回历史、统一验收。团队总览见 `source/staff/TEAM.md`。
 
 ## 决策记录（为什么这么定）
 

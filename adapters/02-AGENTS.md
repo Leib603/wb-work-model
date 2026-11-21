@@ -1,7 +1,7 @@
 # AGENTS.md — 协作约定
 
 > 本文件遵循 AGENTS.md 开放标准，供编码类 AI 工具在会话开始时自动读取。
-> 由 WB 工作模型生成于 2026-11-20。请勿直接编辑本文件，改 source/ 后重新生成。
+> 由 WB 工作模型生成于 2026-11-21。请勿直接编辑本文件，改 source/ 后重新生成。
 
 ## 协作身份
 
@@ -137,7 +137,7 @@ _This file is yours to evolve. As you learn who you are, update it._
 
 > 这是可移植的长期记忆。任何平台上的 WB 在接手时都应先读这份文件。
 > 更新原则：只在"事情真的变了"时改（项目启动/结束、偏好变化、新红线、称呼变化），不做每日流水账。
-> 最后更新：2026-11-19
+> 最后更新：2026-11-21
 
 ## 关系与称呼
 
@@ -156,8 +156,9 @@ _This file is yours to evolve. As you learn who you are, update it._
 
 - 「可移植工作模型」已建成并上线：真相源 + 自动适配 + Git 同步 + 备份恢复 + 迁移手册，四件套齐全。
 - 范围：身份 / 记忆 / 技能 / 知识 四类；覆盖对话 AI、编码工具、WorkBuddy、手机端。
-- 真相源位置：本地 `work-model/`，并同步到私有仓库 `github.com/Leib603/wb-work-model`（详见 SYNC.md）。
-- Git 提交历史：70fe3eb 初始化 / 8e09c76 备份机制 / 7ef42fd 迁移手册。
+- 真相源位置：**`D:\workB\work-model`**（2026-11-21 起，旧 C 盘路径为指向它的目录联接，详见 D006），并同步到私有仓库 `github.com/Leib603/wb-work-model`（详见 SYNC.md）。
+- 其余数据也统一在 `D:\workB\`：`project-memory`（项目日志）、`personal`（身份文件）、`sessions`（会话归档）。目录说明见 `D:\workB\MIGRATE-NOTE.md`。
+- Git 提交历史：70fe3eb 初始化 / 8e09c76 备份机制 / 7ef42fd 迁移手册 / dd18c62 AI 员工团队 / 后续见 `git log`。
 
 ## 管理员职责（WB 必读）
 
@@ -237,3 +238,19 @@ Leib 授权 WB 管理一个 AI 员工团队，覆盖硬件产品开发链。五�
 - **决策**：在核心模型之外，补齐备份恢复（backup.py / restore.py / BACKUP.md）与迁移导入（MIGRATION.md）两套机制。
 - **理由**：Leib 要求"出问题能把备份提出来用"和"迁移拷贝导入手册"。
 - **验证**：备份→恢复闭环演练通过；从仓库全新 clone → build.py 生成适配 → 内容正确，整条链路验证通过。
+
+---
+
+### memory/decisions/2026-11-21.md
+
+# 2026-11-21 决策记录
+
+## D006 — 全部工作数据迁移到 D:\workB\
+
+- **决策**：将工作模型、项目日志、个人身份文件、会话记录归档全部迁到 `D:\workB\`，旧 C 盘路径改为目录联接（Junction）指向新位置。
+- **理由**：Leib 希望所有记录、生成的备份与访问权限统一限制在该根目录下，便于管理与控制。
+- **做法**：先完整复制到 D 盘并逐字节校验；原目录改名保留为 `.c-backup`；在原路径建 Junction。未删除任何原始数据。
+- **新布局**：`D:\workB\work-model`（模型本体）、`project-memory`（项目日志）、`personal`（身份文件）、`sessions`（会话归档）。
+- **例外**：当前会话的 jsonl 正被应用写入，无法热迁移；已复制归档副本到 D 盘，实时写入仍在 C 盘原目录。
+- **联动更新**：每周维护自动化的工作目录改为 `D:/workB/work-model`；Git 远端不变。
+- **回退**：删除 Junction，把 `.c-backup` 改回原名即可。详见 `D:\workB\MIGRATE-NOTE.md`。

@@ -158,7 +158,15 @@ _This file is yours to evolve. As you learn who you are, update it._
 - 范围：身份 / 记忆 / 技能 / 知识 四类；覆盖对话 AI、编码工具、WorkBuddy、手机端。
 - 真相源位置：**`D:\workB\work-model`**（2026-11-21 起，旧 C 盘路径为指向它的目录联接，详见 D006），并同步到私有仓库 `github.com/Leib603/wb-work-model`（详见 SYNC.md）。
 - 其余数据也统一在 `D:\workB\`：`project-memory`（项目日志）、`personal`（身份文件）、`sessions`（会话归档）。目录说明见 `D:\workB\MIGRATE-NOTE.md`。
-- Git 提交历史：70fe3eb 初始化 / 8e09c76 备份机制 / 7ef42fd 迁移手册 / dd18c62 AI 员工团队 / 后续见 `git log`。
+- Git 提交历史：70fe3eb 初始化 / 8e09c76 备份机制 / 7ef42fd 迁移手册 / dd18c62 AI 员工团队 / 2ce1a0e 迁至 D 盘 / 后续见 `git log`。
+
+## 文件存放约定（WB 必读）
+
+- **`D:\workB\work\` 是中转区**（Leib 2026-11-21 定义）：生成好的文件、即将处理的文件都放这里。
+  - `work\output\`：WB 生成的成品先落这里，再交付或转存。
+  - `work\inbox\`：Leib 丢进来等待处理的文件；接任务时先扫一眼。
+- **长期资产进 `work-model\source\`**：规则、记忆、岗位卡、可复用知识。中转区可定期清理，真相源不能。
+- 完整目录说明与回退方法见 `D:\workB\MIGRATE-NOTE.md`（D006）。
 
 ## 管理员职责（WB 必读）
 
@@ -254,3 +262,10 @@ Leib 授权 WB 管理一个 AI 员工团队，覆盖硬件产品开发链。五�
 - **例外**：当前会话的 jsonl 正被应用写入，无法热迁移；已复制归档副本到 D 盘，实时写入仍在 C 盘原目录。
 - **联动更新**：每周维护自动化的工作目录改为 `D:/workB/work-model`；Git 远端不变。
 - **回退**：删除 Junction，把 `.c-backup` 改回原名即可。详见 `D:\workB\MIGRATE-NOTE.md`。
+
+## D007 — work\ 目录定位为中转区
+
+- **决策**：`D:\workB\work\` 用于存放生成好的文件与即将处理的文件；下分 `output\`（成品）和 `inbox\`（待处理）。
+- **理由**：Leib 明确该目录的用途，与长期资产（工作模型真相源）分开。
+- **规则**：一次性输入/输出放 `work\`；长期有价值的规则/记忆/岗位卡放 `work-model\source\`。中转区可定期清理。
+- **联动**：已写入 `D:\workB\MIGRATE-NOTE.md` 与 `source/memory/MEMORY.md` 的"文件存放约定"，各平台 WB 均可见。

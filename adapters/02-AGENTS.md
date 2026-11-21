@@ -168,6 +168,19 @@ _This file is yours to evolve. As you learn who you are, update it._
 - **长期资产进 `work-model\source\`**：规则、记忆、岗位卡、可复用知识。中转区可定期清理，真相源不能。
 - 完整目录说明与回退方法见 `D:\workB\MIGRATE-NOTE.md`（D006）。
 
+## 已安装技能栈（WB 必读）
+
+Leib 2026-11-21 指定的六个 Skill,均装在 `~/.workbuddy/skills/`,已验证被 WorkBuddy 识别启用。按工作流顺序:
+
+- `grill-with-docs` —— 开工前把需求追问清楚,结论沉淀进文档(原有)
+- `show-me` —— 把长方案/对比渲染成 HTML 页面供审阅
+- `frontend-design` —— Anthropic 官方前端视觉设计(2026 新版,先定主题/配色/字体/线框)
+- `mono-color` —— 单色/双色印刷感编辑风图片(海报、Zine、杂志),自带 design-system 配置
+- `ip-as-logo` —— 为 IP 生成克制纯色 logo(32×32 可识别)
+- `dashi-ppt` —— 生成可编辑、可导出 pptx 的 PPT(与 ppt-master 互补,侧重可编辑导出)
+
+来源多为 GitHub/npm 第三方仓库(见决策 D008),不在 WorkBuddy 官方市场,通过 raw 下载 + 复制到技能目录安装。技能文件位于本机 `~/.workbuddy/skills/`,**不在 work-model 仓库内**——换设备需重装。
+
 ## 管理员职责（WB 必读）
 
 Leib 已把工作模型的日常维护交给 WB。任何会话中的 WB 都应主动履行：
@@ -269,3 +282,12 @@ Leib 授权 WB 管理一个 AI 员工团队，覆盖硬件产品开发链。五�
 - **理由**：Leib 明确该目录的用途，与长期资产（工作模型真相源）分开。
 - **规则**：一次性输入/输出放 `work\`；长期有价值的规则/记忆/岗位卡放 `work-model\source\`。中转区可定期清理。
 - **联动**：已写入 `D:\workB\MIGRATE-NOTE.md` 与 `source/memory/MEMORY.md` 的"文件存放约定"，各平台 WB 均可见。
+
+## D008 — 安装六个第三方设计/效率 Skill
+
+- **决策**：按 Leib 指定的六个 Skill 全部安装:grill-with-docs(已有)、show-me、frontend-design、mono-color、ip-as-logo、dashi-ppt。
+- **背景**：这组来自近期流传的「6 个宝藏 Skill」清单(微信公众号/CSDN 多处转载),是 GitHub/npm 上的独立仓库,不在 WorkBuddy 官方技能市场。
+- **安装方式**：`npx skills` 安装器不识别 workbuddy agent(支持 codebuddy),故改用 GitHub raw 通道逐文件下载 SKILL.md 及配套文件,放入 `~/.workbuddy/skills/<名称>/`;dashi-ppt 先用其 npm 安装器装到 `~/.codex/skills/dashi-ppt`,再复制到 WorkBuddy 技能目录。
+- **来源**：show-me=charlie947/show-me;frontend-design=anthropics/skills(官方);mono-color=yanliudesign/mono-color-skill;ip-as-logo=s1dashu/ip-as-logo-skill;dashi-ppt=npm dashi-ppt-skill。
+- **验证**：通过 skill_management list 确认六个技能全部被识别并启用。
+- **注意**：技能文件在本机 `~/.workbuddy/skills/`,不在 work-model 仓库内,换设备需重装(本决策记录来源与方法即可复现)。dashi-ppt 与已装 ppt-master 功能部分重叠,按场景选用。
